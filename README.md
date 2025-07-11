@@ -7,7 +7,7 @@ This is just a quick example about how to use LovyanGFX with the "Waveshare ESP3
 ## Libraries used in this example
 
 *LovyanGFX v1.2.7*  
-*ESP32_IO_Expander v1.1*
+*ESP32_IO_Expander v1.1.0*
 
 ## Description
 
