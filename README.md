@@ -4,7 +4,7 @@ This is just a quick example about how to use LovyanGFX with the "Waveshare ESP3
 
 "Waveshare ESP32-S3 Touch LCD 4.3B, 800x480px" will follow soon.
 
-## Libraries used in this example
+## Libraries required
 
 *LovyanGFX v1.2.7*  
 *ESP32_IO_Expander v1.1.0*
