@@ -5,7 +5,10 @@
  * Your working graphics functions extracted from the original code.
  */
 #include <Arduino.h>
+
+// Only include the header file according the hardware variant you're using
 #include "LGFX_Waveshare_ESP32S3_LCD7.h"
+//#include "LGFX_Waveshare_ESP32S3_LCD_4.3B.h"
 
 LGFX_Sprite canvas;
 
