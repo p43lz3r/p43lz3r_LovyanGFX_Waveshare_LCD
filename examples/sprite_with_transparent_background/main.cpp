@@ -2,7 +2,7 @@
 #include "LGFX_Waveshare_ESP32S3_LCD_4.3B.h"
 #include "images.h"
 #include <OpenFontRender.h>
-#include "myFonts.h" // NerdMiner font header - contains DigitalNumbers, NotoSans_Bold, etc.
+#include "myFonts.h"
 
 // Function declarations
 void displayBackground();
@@ -14,7 +14,7 @@ uint16_t rgb565_lovyan(uint8_t r, uint8_t g, uint8_t b);
 
 // Global variables
 LGFX_Sprite tempSprite(&lcd); // Sprite for temperature display
-OpenFontRender render;        // Font renderer (like NerdMiner)
+OpenFontRender render;        // Font renderer
 
 void setup()
 {
@@ -32,7 +32,7 @@ void setup()
     // Clear screen to black
     lcd.fillScreen(TFT_BLACK);
 
-    // Initialize OpenFontRender exactly like NerdMiner does
+    // Initialize OpenFontRender
     // They use DigitalNumbers font for numeric displays
     if (render.loadFont(DigitalNumbers, sizeof(DigitalNumbers)))
     {
@@ -54,8 +54,8 @@ void setup()
         Serial.println("DigitalNumbers font loaded successfully!");
     }
 
-    // Set up render properties like NerdMiner
-    render.setLineSpaceRatio(0.9); // Same as NerdMiner
+    // Set up render properties
+    render.setLineSpaceRatio(0.9);
 
     // Create temperature sprite
     tempSprite.createSprite(180, 70);
@@ -64,7 +64,7 @@ void setup()
     displayBackground();
     // displayTemperatureSprite(23.5);
 
-    Serial.println("Setup complete with NerdMiner fonts!");
+    Serial.println("Setup complete!");
 }
 
 void loop()
@@ -105,7 +105,7 @@ void displayBackground()
     lcd.pushImage(0, 0, 750, 430, background_img); // Updated for 750x430 background
 }
 
-// Display temperature using NerdMiner DigitalNumbers font
+// Display temperature
 void displayTemperatureSprite(float temperature)
 {
     Serial.printf("Displaying temperature: %.1f°C with NerdMiner font\n", temperature);
@@ -116,14 +116,14 @@ void displayTemperatureSprite(float temperature)
     // Clear sprite
     tempSprite.fillSprite(TFT_BLACK);
 
-    // Link sprite to renderer (like NerdMiner does)
+    // Link sprite to renderer
     render.setDrawer(tempSprite);
 
-    // Use DigitalNumbers font for temperature (like NerdMiner uses for numbers)
+    // Use DigitalNumbers font for temperature
     render.setFontSize(32);
     render.setFontColor(TFT_WHITE, TFT_BLACK);
 
-    // Use NerdMiner's rdrawString method for right-aligned text
+    // Use rdrawString method for right-aligned text
     render.rdrawString(tempStr, tempSprite.width() - 10, tempSprite.height() / 2, TFT_WHITE);
 
     // Add border
@@ -134,7 +134,7 @@ void displayTemperatureSprite(float temperature)
     int spriteY = 20;
     tempSprite.pushSprite(spriteX, spriteY);
 
-    Serial.println("Temperature displayed with NerdMiner DigitalNumbers font");
+    Serial.println("Temperature displayed with DigitalNumbers font");
 }
 
 // Display temperature in sci-fi style to match your blue glowing background
@@ -186,13 +186,13 @@ void displayTemperatureNerdMinerStyle(float temperature)
     Serial.println("Temperature displayed in sci-fi style matching background");
 }
 
-// Display temperature at custom position using NerdMiner methods
+// Display temperature at custom position
 void displayTemperatureAt(float temperature, int x, int y)
 {
     char tempStr[12];
     snprintf(tempStr, sizeof(tempStr), "%.1f°C", temperature);
 
-    // Create sprite like NerdMiner does
+    // Create sprite
     LGFX_Sprite customSprite(&lcd);
     bool spriteCreated = customSprite.createSprite(150, 60);
     if (!spriteCreated)
@@ -205,11 +205,11 @@ void displayTemperatureAt(float temperature, int x, int y)
     customSprite.setSwapBytes(true);
     customSprite.fillSprite(TFT_BLACK);
 
-    // Link to renderer like NerdMiner
+    // Link to renderer
     render.setDrawer(customSprite);
     render.setLineSpaceRatio(0.9);
 
-    // Color-coded temperature like NerdMiner uses different colors
+    // Color-coded temperature
     uint16_t tempColor;
     if (temperature < 15)
     {
@@ -217,7 +217,7 @@ void displayTemperatureAt(float temperature, int x, int y)
     }
     else if (temperature < 25)
     {
-        tempColor = 0xDEDB; // Normal (same as NerdMiner secondary color)
+        tempColor = 0xDEDB; // Normal
     }
     else
     {
@@ -227,20 +227,20 @@ void displayTemperatureAt(float temperature, int x, int y)
     render.setFontSize(24);
     render.setFontColor(tempColor, TFT_BLACK);
 
-    // Center the text like NerdMiner does
+    // Center the text
     render.cdrawString(tempStr, customSprite.width() / 2, customSprite.height() / 2, tempColor);
 
     // Add border
     customSprite.drawRect(0, 0, customSprite.width(), customSprite.height(), tempColor);
 
-    // Push to screen and cleanup like NerdMiner
+    // Push to screen and cleanup
     customSprite.pushSprite(x, y);
     customSprite.deleteSprite();
 
     Serial.printf("Custom temperature displayed at (%d, %d)\n", x, y);
 }
 
-// Function to mimic NerdMiner's createBackgroundSprite pattern
+// Function createBackgroundSprite pattern
 bool createTemperatureSprite(int16_t wdt, int16_t hgt)
 {
     bool success = tempSprite.createSprite(wdt, hgt);
@@ -261,10 +261,10 @@ bool createTemperatureSprite(int16_t wdt, int16_t hgt)
     }
 }
 
-// Advanced function: Multiple temperature displays like NerdMiner's multiple screens
+// Advanced function: Multiple temperature displays
 void displayMultipleTemperatures(float temp1, float temp2, float temp3)
 {
-    // Display 3 temperatures in NerdMiner style layout
+    // Display 3 temperatures
 
     // Temperature 1 - Top right (current) - positioned for 750x430 screen
     if (createTemperatureSprite(120, 50))
@@ -314,5 +314,5 @@ void displayMultipleTemperatures(float temp1, float temp2, float temp3)
         tempSprite.deleteSprite();
     }
 
-    Serial.println("Multiple temperatures displayed NerdMiner style");
+    Serial.println("Multiple temperatures displayed.");
 }
