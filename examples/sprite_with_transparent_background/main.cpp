@@ -102,7 +102,7 @@ void loop()
 // Display the background image
 void displayBackground()
 {
-    lcd.pushImage(0, 0, 750, 430, mrL_img); // Updated for 750x430 background
+    lcd.pushImage(0, 0, 750, 430, background_img); // Updated for 750x430 background
 }
 
 // Display temperature using NerdMiner DigitalNumbers font
@@ -147,7 +147,7 @@ void displayTemperatureNerdMinerStyle(float temperature)
     // Create larger sprite for sci-fi style
     LGFX_Sprite nmSprite(&lcd);
     nmSprite.createSprite(220, 90);
-    nmSprite.pushImage(-400, -200, 750, 430, mrL_img);
+    nmSprite.pushImage(-400, -200, 750, 430, background_img);
 
     // Semi-transparent dark background to blend with sci-fi theme
     // nmSprite.fillSprite(TFT_TRANSPARENT); // Very dark blue to match background
@@ -166,7 +166,7 @@ void displayTemperatureNerdMinerStyle(float temperature)
 
     // Add "TEMPERATURE" label in sci-fi style
     render.setFontSize(12);
-    render.rdrawString("TEMP.", 70, 15, 0x3DDF); // Medium blue
+    render.rdrawString("TEMP.", 70, 70, 0x3DDF); // Medium blue
 
     // Sci-fi style glowing border to match background
     // nmSprite.drawRect(0, 0, nmSprite.width(), nmSprite.height(), TFT_CYAN);
